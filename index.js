@@ -17,8 +17,34 @@ async function run() {
         console.log("db connected");
         const usersCollection = client.db('faucets').collection('users');
 
+        // user sign up
+        app.post('/signup', async (req, res) => {
+            const userData = req.body;
+            const query = { email: userData.email };
+            const checkUser = await usersCollection.findOne(query);
+            if (checkUser === null) {
+                const result = await usersCollection.insertOne(userData);
+                res.send(result);
+            } else {
+                res.status(400).send({ message: "User already exist" })
+            }
+        });
 
-
+        // user sign in
+        app.get('/signin', async (req, res) => {
+            const userEmail = req.query.email;
+            const userPassword = req.query.password;
+            const query = {
+                email: userEmail,
+                password: userPassword
+            };
+            const user = await usersCollection.findOne(query);
+            if (user !== null) {
+                res.send(user);
+            } else {
+                res.status(400).send({ message: "Invalid email or password" })
+            }
+        });
 
     }
     finally {
