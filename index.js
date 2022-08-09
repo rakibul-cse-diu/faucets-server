@@ -4,6 +4,7 @@ const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 const userRoutes = require("./routes/userRoutes");
 const walletsRoutes = require("./routes/walletsRoutes");
+const transactionRoutes = require('./routes/transactionRoutes');
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
@@ -16,6 +17,7 @@ connectDB();
 
 app.use("/api/users", userRoutes);
 app.use("/api/wallets", walletsRoutes)
+app.use("/api/transaction", transactionRoutes)
 
 app.use(notFound);
 app.use(errorHandler);
