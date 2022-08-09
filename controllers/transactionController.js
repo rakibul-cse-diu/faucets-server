@@ -21,7 +21,7 @@ const transactionHistory = asyncHandler(async (req, res) => {
 const createTransaction = asyncHandler(async (req, res) => {
     const { walletaddress, requesttype, amount, time } = req.body;
 
-
+    // create new transaction
     const newTransaction = await transaction.create({
         walletaddress,
         requesttype,
@@ -29,6 +29,7 @@ const createTransaction = asyncHandler(async (req, res) => {
         time,
     });
 
+    // send response
     if (newTransaction) {
         res.status(201).json({
             _id: newTransaction._id,

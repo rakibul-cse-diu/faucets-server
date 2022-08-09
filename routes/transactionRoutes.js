@@ -3,7 +3,8 @@ const { transactionHistory, createTransaction } = require("../controllers/transa
 const validateTransaction = require("../middleware/validateTransaction");
 const router = express.Router();
 
-router.route("/").post(createTransaction, validateTransaction);
-router.get("/history", transactionHistory, validateTransaction);
+// check validation with validate middleware
+router.route("/").post(validateTransaction, createTransaction);
+router.get("/history", validateTransaction, transactionHistory);
 
 module.exports = router;

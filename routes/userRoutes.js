@@ -4,7 +4,8 @@ const validateLogin = require("../middleware/validateLogin");
 const validateRegister = require("../middleware/validateRegister");
 const router = express.Router();
 
-router.route("/").post(registerUser, validateRegister);
-router.post("/login", authUser, validateLogin);
+// check validation with validate middleware
+router.route("/").post(validateRegister, registerUser);
+router.post("/login", validateLogin, authUser);
 
 module.exports = router;
