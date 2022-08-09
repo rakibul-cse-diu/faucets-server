@@ -3,6 +3,7 @@ const cors = require('cors');
 const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
 const userRoutes = require("./routes/userRoutes");
+const walletsRoutes = require("./routes/walletsRoutes");
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 
 const app = express();
@@ -14,6 +15,7 @@ app.use(express.json());
 connectDB();
 
 app.use("/api/users", userRoutes);
+app.use("/api/wallets", walletsRoutes)
 
 app.use(notFound);
 app.use(errorHandler);
