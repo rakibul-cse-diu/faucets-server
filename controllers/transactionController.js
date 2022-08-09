@@ -16,8 +16,8 @@ const transactionHistory = asyncHandler(async (req, res) => {
 
 });
 
-// make new transaction
 
+// make new transaction
 const createTransaction = asyncHandler(async (req, res) => {
     const { walletaddress, requesttype, amount, time } = req.body;
 
