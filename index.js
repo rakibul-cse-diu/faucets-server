@@ -1,9 +1,7 @@
 const express = require('express')
 const cors = require('cors');
-const { MongoClient, ServerApiVersion, ObjectId } = require('mongodb');
 const connectDB = require('./config/db');
 const port = process.env.PORT || 5000;
-// import connectDB from "./config/db";
 const userRoutes = require("./routes/userRoutes");
 const { notFound, errorHandler } = require('./middleware/errorMiddleware');
 

@@ -1,10 +1,10 @@
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel.js");
 
+
 // Auth the user
 const authUser = asyncHandler(async (req, res) => {
     const { email, password } = req.body;
-
     const user = await User.findOne({ email });
 
     if (user && (await user.matchPassword(password))) {
@@ -18,6 +18,7 @@ const authUser = asyncHandler(async (req, res) => {
         res.status(401);
         throw new Error("Invalid Email or Password");
     }
+
 });
 
 // Register new user
@@ -50,6 +51,7 @@ const registerUser = asyncHandler(async (req, res) => {
         res.status(400);
         throw new Error("User not found");
     }
+
 });
 
 module.exports = { authUser, registerUser };
